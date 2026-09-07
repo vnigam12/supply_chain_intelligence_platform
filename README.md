@@ -1,181 +1,176 @@
 ## Project Overview
 
-This project demonstrates a complete End-to-End BI Pipeline for DataCo Global, a simulated multinational retail corporation. The solution spans the entire data lifecycle: from raw data ingestion and transformation using Python, to structured data warehousing in SQL Server, and finally to executive-level business intelligence dashboard in Power BI.
+This project demonstrates an end-to-end Business Intelligence pipeline for DataCo Global, a simulated multinational retail organization. The solution covers the complete data lifecycle—from raw data ingestion and transformation using Python, through structured data warehousing and modeling in SQL Server, to executive-level business intelligence dashboards built in Power BI.
 
-By transforming over 180,000 denormalized records into a robust Fact Constellation (Galaxy) Schema, this project provides actionable insights into logistics efficiency, profitability leakage, and customer conversion.
+By transforming more than 180,000 denormalized records into a scalable Fact Constellation/Galaxy Schema, the project delivers actionable insights into logistics performance, profitability leakage, customer conversion, and overall business operations.
 
----
 
-## Table of Contents
-- [Datasource](#datasource)
-- [Repository Architecture](#repository-architecture)
-- [Business Questions & Project Objectives](#business-questions--project-objectives)
-- [Executive Performance Summary](#executive-performance-summary)
-  - [Strategic Insights](#strategic-insights)
-  - [Key Business Challenges](#key-business-challenges)
-  - [Data-Driven Recommendations](#data-driven-recommendations)
-- [The End-to-End Pipeline](#the-end-to-end-pipeline)
-  - [Phase 1: Python ETL & Data Engineering](#phase-1-python-etl--data-engineering)
-  - [Phase 2: SQL Server Data Warehousing & Schema Enforcement](#phase-2-sql-server-data-warehousing--schema-enforcement)
-  - [Phase 3: Power BI Intelligence & Visualization](#phase-3-power-bi-intelligence--visualization)
-- [Data Modeling (Fact Constellation Schema)](#data-modeling-fact-constellation-schema)
-- [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-- [Business Performance Dashboard Summary](#business-performance-dashboard-summary)
-- [Technical Stack](#technical-stack)
-- [Author & Professional Contact](#author--professional-contact)
-
----
-
-## Datasource
-- **Source:** DataCo Smart Supply Chain for Big Data Analysis
-- **Access Link:** [Mendeley Data Dataset (Version 5)](https://data.mendeley.com/datasets/8gx2fvg2k6/5)
-- **Description:** Contains structured enterprise supply chain data, covering transactional sales, customer activity, web traffic logs, and shipping logistics metrics across global business units.
-
-## Repository Architecture
-```text
-├── Database             # Database scripts, schemas, or relational data files
-├── Dataset              # Raw datasets used across analysis and reporting
-├── PowerBI Dashboard    # Power BI dashboard files (.pbix) and visual assets
-├── Process Files        # Data transformation, prep, and pipeline processing scripts
-├── SQL                  # SQL queries, procedures, and data extraction scripts
-└── README.md            # Project documentation and executive summary
-```
-
----
-
-# DataCo: An End-to-End Data Analysis & Business Intelligence Pipeline
+# DataCo: End-to-End Data Analytics & Business Intelligence Solution
 <img width="1858" height="1038" alt="image" src="https://github.com/user-attachments/assets/59e0cbb8-2402-48b7-a02a-39a37aff6190" />
 
----
+
+## Business Performance Dashboard Summary
+
+| Dashboard | Focus | Business Value |
+| :--- | :--- | :--- |
+| **Overview** | Provides a high-level view of business performance across core financial metrics—including Sales, Costs, and Profit—along with order volumes, category and market distribution, customer segmentation, and monthly sales trends. | Enables executive-level visibility into overall financial health, key revenue drivers by category and market, customer purchasing patterns, payment preferences, and seasonal demand trends to support budgeting and commercial planning. |
+| **Discounts** | Analyzes promotional discount depth, discount elasticity, margin erosion per 1% discount, and order-level discount rates across product price segments and categories. | Identifies margin leakage and discount-sensitive areas, enabling targeted discount controls and promotional strategies that protect profitability while maintaining effective price incentives. |
+| **Web Traffic** | Evaluates digital channel performance through web conversion rates by day, category-level conversion trends, and web versus non-web sales by product. | Identifies digital conversion bottlenecks, highlights high-performing sales periods such as the Thursday conversion peak, and supports targeted UX/UI improvements for underperforming product pages. |
+| **Shipping** | Monitors fulfillment performance through late and canceled order trends, scheduled versus actual delivery variance, and profitability across shipping statuses and modes. | Identifies logistics inefficiencies and SLA risks, enabling optimization of shipping modes and fulfillment processes to improve delivery reliability, customer satisfaction, and unit profitability. |
+| **Recommendation** | Prioritizes strategic initiatives using an Impact vs. Effort framework across Discount Optimization, SLA Performance & Risk, Checkout & Traffic Optimization, and Post-Purchase & Return Reduction. | Converts complex analytical findings into prioritized, actionable initiatives, helping leadership focus on high-impact quick wins while establishing a roadmap for longer-term operational and strategic investments. |
+
+
+## Datasource
+- **Description:** Contains structured enterprise supply chain data spanning transactional sales, customer interactions, web traffic activity, and shipping and logistics metrics across global business units.
+- **Source:** DataCo Smart Supply Chain for Big Data Analysis
+- **Access Link:** [Mendeley Data Dataset (Version 5)](https://data.mendeley.com/datasets/8gx2fvg2k6/5)
+
+
+## Key Business Challenges
+- **Severe Logistics & Fulfillment Bottlenecks:** Between 2015 and 2017, DataCo fulfilled 65,752 orders, yet delivery reliability remained a significant operational challenge. Approximately 54.8% of shipments were delivered late, while only 17.8% arrived on time. Late shipments required an average of 4.09 days to reach customers, exceeding the expected transit window of 2–4 days. Persistent delivery delays were also associated with lower order profitability due to additional fulfillment costs, expedited shipping, penalties, and customer service recovery. The consistency of these delays despite relatively stable order volumes suggests systemic fulfillment inefficiencies rather than demand-driven capacity constraints.
+
+- **Digital Channel Underperformance & Conversion Gap:** Despite generating more than 443K monthly page views, DataCo's e-commerce channel contributed only 3.04% of total sales, while traditional non-web channels generated more than 97% of revenue across leading product lines. This significant gap between website traffic and sales suggests that the digital channel functions primarily as a product discovery or browsing platform rather than an effective revenue-generating channel. The findings point to opportunities across digital acquisition, customer engagement, and checkout conversion rather than a fundamental lack of product demand.
+
+- **Seasonal Margin Erosion & Q4 Product-Mix Shift:** Despite relatively stable order volumes during November and December, DataCo experienced a notable decline in revenue during the fourth quarter. The decline was driven by a shift in purchasing behavior toward lower-value, medium-volume products and away from higher-margin premium items. This unfavorable product-mix shift reduces average order value and compresses margins during the peak holiday period, suggesting that existing promotional strategies may be driving sales volume at the expense of profitability.
+
+
 ## Business Questions & Project Objectives
-This project was designed to answer a series of strategic business questions across sales performance, digital commerce, pricing strategy, and supply chain operations. The objective was not only to build an end-to-end Business Intelligence pipeline, but also to transform enterprise data into actionable insights that support executive decision-making. Specifically, the analysis seeks to answer the these key questions:
+This project was designed to answer a series of strategic business questions across sales performance, digital commerce, pricing strategy, and supply chain operations. The objective was not only to build an end-to-end Business Intelligence pipeline, but also to transform enterprise data into actionable insights that support executive decision-making. Specifically, the analysis seeks to answer these key questions:
 
-**💰 Revenue & Commercial Performance**
-- Which products, departments, customer segments, and geographic markets generate the highest revenue and profitability?
-- How has business performance evolved over time, and what seasonal trends influence sales?
+**Strategic Decision Support**
+- Which operational and commercial improvements offer the greatest potential business impact?
+- How can improvement opportunities be prioritized based on expected business value, cost, and implementation effort?
 
-**🏷️ Pricing & Profitability**
-- How do discount strategies influence sales performance and profit margins?
-- Which product categories experience the greatest margin erosion from excessive discounting?
-- Which products are highly price-sensitive, and where can promotional spending be optimized without sacrificing profitability?
+**Revenue & Commercial Performance**
+- Which products, departments, customer segments, and geographic markets drive the highest revenue and profitability?
+- How has revenue and overall business performance evolved over time?
+- What seasonal patterns or trends are influencing sales performance?
 
-**🌐 Digital Commerce & Customer Conversion**
-- How effectively does website traffic convert into completed purchases?
-- Which days of the week, product categories, and customer segments achieve the highest conversion rates?
+**Pricing & Profitability**
+- How do discounting strategies impact sales, revenue, and profit margins?
+- Which products or categories experience the greatest margin erosion due to discounting?
+- Which products demonstrate the highest price sensitivity?
+- Where can promotional spending and discount strategies be optimized without compromising profitability?
 
-**🚚 Logistics & Fulfillment Performance**
+**Digital Commerce & Customer Conversion**
+- How effectively does website traffic translate into completed purchases?
+- Which product categories, customer segments, and days of the week generate the highest conversion rates?
+- Where are the largest opportunities to improve the customer conversion funnel?
+
+**Logistics & Fulfillment Performance**
 - Which shipping modes, regions, and fulfillment processes experience the greatest operational inefficiencies?
-- How do delivery reliability and shipping performance affect profitability?
+- How do delivery reliability and shipping performance impact customer experience and profitability?
+- Which areas of the supply chain present the greatest opportunities for operational improvement?
 
-**📊 Strategic Decision Support**
-- Which operational improvements provide the highest business impact relative to implementation effort?
 
----
+## Key Business Insights
+- **Strong Global Market Penetration:** Europe and LATAM emerged as the company’s strongest geographic markets, each generating more than $10 million in sales, followed by Pacific Asia with approximately $8 million. This demonstrates a diversified global footprint and sustained international demand across key regions.
+
+- **High Revenue Concentration Across Core Departments:** Fan Shop and Apparel served as DataCo’s primary commercial engines, collectively accounting for approximately 70% of total sales. While this concentration reflects strong product demand, it also creates a potential business risk, as disruptions in inventory availability, supply chain operations, or customer demand within these departments could materially impact overall revenue.
+
+- **Significant Digital Conversion Opportunity:** Customer conversion reached 22.94% on Thursdays, compared with an average of approximately 9.5% on other weekdays, representing nearly a 2.5× uplift. Thursday therefore presents a high-potential window for targeted promotions, product launches, and digital marketing campaigns.
+
+- **High-Value Customer Segments:** Corporate and Consumer customers generated the highest average order values, despite predominantly placing single-item orders. This presents opportunities to increase customer lifetime value through premium product offerings, personalized marketing, cross-selling, and targeted retention initiatives.
+
+- **Delivery Delays Indicate Process Inefficiencies:** Delivery performance remained relatively consistent despite fluctuations in order volumes throughout the year, suggesting that delays are more likely attributable to fulfillment and delivery process inefficiencies than insufficient logistics capacity.
+
+- **Complex Shipments Face Greater Delivery Risk:** Late deliveries were more prevalent among higher-volume and more complex shipments, while moderate-sized orders were more likely to arrive on time. This indicates that fulfillment efficiency deteriorates as shipment complexity increases, highlighting the need for proactive monitoring, capacity planning, and priority handling of complex orders.
+
+- **Delivery Reliability Is a Key Profitability Driver:** On-time deliveries consistently generated stronger profit margins, while cancelled orders produced the weakest financial returns. Although late orders remained profitable, recurring delivery issues reduced overall margins and customer value. Improving delivery reliability could therefore increase profitability without requiring additional sales volume or price increases.
+
+- **Operational Execution Matters More Than Product Price:** Profitability was driven more strongly by fulfillment performance and discounting strategy than by product price alone. Products delivered on time with well-controlled discounts consistently achieved stronger margins, indicating that optimizing operations and promotional strategies may provide greater profit improvement than simply increasing the sale of higher-priced products.
+
 
 ## Executive Performance Summary
-Between 2015 and 2018, DataCo generated approximately $36.78 million in total revenue while maintaining an average net profit margin of 10.8%, reflecting strong financial performance and sustained market demand. The company's revenue was largely driven by the Apparel and Fan Shop departments, which generated the majority of total revenue and demonstrated strong product demand. From a regional perspective, Europe and LATAM emerged as the company's most significant markets, contributing the largest share of sales. Customer demand was primarily concentrated within the Consumer (≈52%) and Corporate (≈30%) segments, with single-item orders representing the dominant purchasing behaviour. This purchasing pattern suggests a business characterised by frequent, lower-volume orders rather than bulk purchases, providing valuable context for inventory planning, fulfilment operations, and targeted marketing strategies.
+- Between 2015 and 2018, DataCo generated approximately $36.78 million in revenue while maintaining an average net profit margin of 10.8%, indicating strong overall financial performance and sustained customer demand. 
+- Revenue was primarily driven by the Apparel and Fan Shop departments, which accounted for a significant share of total sales. From a geographic perspective, Europe and LATAM represented the company’s strongest markets, contributing the largest portions of overall revenue.
+- Customer demand was concentrated primarily within the Consumer (~52%) and Corporate (~30%) segments. Orders were predominantly single-item purchases, suggesting a high-frequency, lower-volume purchasing model rather than bulk ordering. This behavior has important implications for inventory planning, fulfillment capacity, customer segmentation, and targeted marketing strategies.
 
-### Strategic Insights
-- **Good Global Market Penetration:** Europe and LATAM serve as the dominant revenue pillars, each generating over $10 million in sales. Pacific Asia follows closely with $8 million, confirming a strong, diversified global footprint with significant international demand.
-- **Core Departmental Revenue Concentration:** The Fan Shop and Apparel departments function as the company's primary commercial engines, collectively contributing approximately 70% of total sales. While this reflects strong customer demand and product performance, it also indicates a high revenue concentration, meaning that disruptions to product availability, supply chain operations, or changes in customer demand within these two departments could have a significant impact on overall business performance.
-- **Digital Conversion Performance:** Customer conversion reached 22.94% on Thursdays, compared with an average of approximately 9.5% on other weekdays. This near 2.5x uplift identifies Thursday as the most effective day for targeted promotions, product launches, and digital marketing campaigns.
-- **High-Value Customer Segments:** Corporate and Consumer customers consistently recorded the highest average order values through predominantly single-item purchases, presenting opportunities for premium product offerings, personalised marketing campaigns, and customer retention initiatives.
-- **Delivery Delays Are Operational Rather Than Capacity-Driven:** Although order volumes vary throughout the year, delivery performance remains largely unchanged. This indicates that delays are more likely caused by inefficiencies in fulfillment and delivery operations than by insufficient logistics capacity.
-- **High-Volume Shipments Are More Susceptible to Delays:** Late deliveries are concentrated among high-volume shipments, while on-time deliveries are more common for moderate-sized orders. This patterns suggest that fulfillment processes become less efficient as shipment complexity increases, highlighting the need for proactive monitoring and priority handling of large orders.
-- **Delivery Reliability Drives Profitability:** On-time deliveries consistently generate the highest profit margins, while cancelled orders deliver the weakest financial returns. Although late deliveries remain profitable, recurring delivery delays gradually reduce overall margins and customer value. This highlights delivery reliability as a key driver of financial performance, where improving fulfillment efficiency can increase profitability without requiring additional sales or price increases.
-- **Product Price Is Not the Primary Driver of Profitability:** Profitability is influenced more by operational execution and discounting strategy than by product price. Products delivered on time with well-managed discounts consistently achieve stronger margins, indicating that improving fulfillment performance and optimizing promotional strategies can generate greater profit gains than focusing solely on selling higher-priced products.
 
-### Key Business Challenges
-- **Digital Channel Underperformance & Conversion Failure:** Despite generating over 443K monthly page views, the e-commerce platform operates as a passive "window shopping" catalog rather than a revenue driver. The web channel contributes only 3.04% of total sales, and traditional non-web channels capture over 97% of revenue across all top-selling product lines. This indicates a severe deficiency in digital acquisition and checkout conversion, rather than a lack of market demand for the products themselves.
-- **Severe Logistics & Fulfillment Bottlenecks:** Between 2015 and 2017, DataCo fulfilled 65,752 orders, yet delivery performance remained a critical operational weakness. Approximately 54.8% of all shipments were delivered late, while only 17.8% arrived on time, indicating a persistent failure to meet customer delivery expectations. Delayed orders required an average of 4.09 days to arrive compared with the promised 2.0 to 4.0 days transit time. The analysis further shows that late deliveries are directly associated with lower profitability, as additional fulfillment costs, expedited shipping, penalty fees and service recovery efforts erode order margins. Since delivery delays remained consistently high despite stable order volumes, the root cause lies in systemic fulfillment inefficiencies rather than demand fluctuations.
-- **Seasonal Margin Erosion (Q4 Unit-Mix Shift):** While gross order volumes remain stable during November and December, total revenue declines significantly. This is driven by a dangerous shift in product composition: customers are substituting high-margin, premium items for low-value, medium-volume goods. This unit-mix compression actively erodes Q4 profitability, signaling that the current holiday promotional strategy is cannibalizing the bottom line.
+## Data-Driven Strategic Recommendations
 
-### Data-Driven Recommendations
-- **Discount Optimization (Immediate ROI):** Eliminate promotional code stacking and enforce managerial approval thresholds for inelastic product categories (e.g., Fitness Accessories) to stop margin erosion and maximize promotional profitability.
-- **SLA Performance & Risk Dashboard (Strategic Investment):** Implement automated checkpoint monitoring and early exception escalation across high-risk shipping modes (First Class, Same Day) and volatile regions to eliminate late delivery delays and protect customer SLAs.
-- **Checkout & Traffic Optimization (Strategic Investment):** Streamline checkout steps and redesign product landing pages for low-converting categories (e.g., Trade-In, Women's Golf Clubs) to boost web conversion rates by 2–5 percentage points without increasing acquisition costs.
-- **Post-Purchase & Return Rate Reduction (Tactical Optimization):** Deploy automated in-transit tracking notifications and conduct return root-cause analytics for high-cancellation categories (e.g., Kids' Golf Clubs, Pet Supplies) to cut return logistics overhead by 10–15%.
-- **Capitalize on the Thursday Peak:** Deploy exclusive, digital-only flash sales and time-sensitive incentives on Thursdays. Channeling the 22.94% high-intent traffic into finalized web sales will reduce reliance on traditional distribution networks and expand overall e-commerce profitability.
+- **Optimize Discounting for Immediate Margin Impact:** Eliminate promotional code stacking and establish managerial approval thresholds for highly inelastic product categories, such as Fitness Accessories. This can reduce unnecessary discounting and protect promotional margins.
 
----
+- **Capitalize on the Thursday Conversion Peak:** Launch digital-only flash sales, targeted promotions, and time-sensitive incentives on Thursdays, when conversion reaches 22.94%. Converting this high-intent traffic into completed purchases can increase e-commerce revenue and reduce reliance on traditional distribution channels.
+
+- **Improve Checkout & Digital Conversion:** Simplify the checkout journey and redesign product landing pages for low-converting categories, such as Trade-In and Women’s Golf Clubs. Improving the digital purchase funnel can increase conversion by an estimated 2–5 percentage points without requiring additional customer acquisition spend.
+
+- **Reduce Post-Purchase & Return Costs:** Introduce automated in-transit tracking notifications and perform root-cause analysis on high-cancellation categories, including Kids’ Golf Clubs and Pet Supplies. Addressing the primary causes of cancellations and returns can reduce reverse-logistics overhead and improve customer experience.
+
+- **Strengthen SLA Monitoring & Fulfillment Risk Management:** Implement automated shipment checkpoint monitoring with early exception alerts for high-risk shipping modes, including First Class and Same Day, as well as volatile regions. Proactive intervention can improve delivery reliability, protect customer SLAs, and reduce the profitability impact of late shipments.
+
 
 ## The End-to-End Pipeline
 
 The project architecture is divided into three distinct phases, ensuring a seamless flow from raw data to business decisions.
 
 ### Phase 1: Python ETL & Data Engineering
-The raw DataCo dataset was initially a denormalized flat file. Using Python (Pandas, NumPy, SQLAlchemy), I implemented a comprehensive ETL (Extract, Transform, Load) workflow:
-- **Data Cleaning:** Handled missing values, standardized naming conventions, and corrected data types (e.g., converting Unix timestamps to DateTime).
-- **Normalization:** Deconstructed the flat file into a relational model, creating 8 Dimension tables and 2 Fact tables to eliminate redundancy and improve data integrity.
-- **Feature Engineering:** Designed and generated surrogate key columns (e.g., Shipping_ID, Location_ID, Log_ID, and other entity identifiers) to uniquely represent business entities across the supply chain. These engineered identifiers served as the foundation for decomposing the original denormalized dataset into normalized dimension and fact tables, ensuring referential integrity, minimizing data redundancy, and supporting efficient SQL database development, Entity Relationship Diagram (ERD) construction, analytical querying, and Power BI semantic modelling for executive dashboard reporting.
-- **Exporting Tables:** The cleaned and normalized DataFrames were programmatically exported as structured CSV files using Pandas' `to_csv()` method, ensuring data integrity and readiness for SQL ingestion.
+The raw DataCo dataset was initially provided as a highly denormalized flat file. Using Python with Pandas, NumPy, and SQLAlchemy, I developed a structured ETL (Extract, Transform, Load) workflow to clean, transform, normalize, and prepare the data for downstream analytics and business intelligence.
+
+- **Data Cleaning:** Addressed missing and inconsistent values, standardized naming conventions, validated data types, and converted Unix timestamps into standardized DateTime formats for reliable temporal analysis.
+
+- **Data Normalization:** Decomposed the denormalized source dataset into a relational data model consisting of 8 Dimension tables and 2 Fact tables, reducing data redundancy, improving data integrity, and establishing a scalable foundation for analytical workloads.
+
+- **Feature Engineering & Surrogate Keys:** Designed and generated surrogate identifiers—including `Shipping_ID`, `Location_ID`, `Log_ID`, and other entity-specific keys—to uniquely identify business entities across the supply chain. These engineered keys supported the decomposition of the source dataset into normalized fact and dimension structures while maintaining referential integrity and enabling efficient relational querying, ERD development, and Power BI semantic modeling.
+
+- **Data Export & SQL Readiness:** Programmatically exported the transformed DataFrames into structured CSV files using Pandas `to_csv()`, preserving schema consistency and preparing the curated datasets for SQL database ingestion, analytical querying, and executive dashboard development.
+
 
 ### Phase 2: SQL Server Data Warehousing & Schema Enforcement
-The transition from Python to SQL was a critical step in establishing a production-grade analytical database. Using a dedicated SQL script (`Import_DataCo.sql`), I implemented the following workflow:
-- **Database Provisioning:** The script initiated by creating the `dataco_supply_chain` database to host the analytical model.
-- **Schema Definition (Python to SQL):** For each dimension and fact table, `CREATE TABLE` statements were executed, explicitly defining columns with precise data types (e.g., `DECIMAL(15, 10)` for financial precision, `DATETIME` for temporal accuracy, `VARCHAR` for categorical data). This step ensured that the Python-generated data conformed to a strict relational schema.
-- **Data Ingestion:** High-speed `LOAD DATA LOCAL INFILE` commands were utilized to efficiently import the Python-generated CSVs into their respective SQL tables, ensuring scalability for large datasets.
-- **Defining Primary Keys:** Each dimension table (e.g., `DimCustomer`, `DimProduct`) and fact table (`FactSales`, `FactWebTraffic`) had its unique identifier explicitly defined as a `PRIMARY KEY` during table creation, guaranteeing data uniqueness and supporting efficient data retrieval.
-- **Defining Foreign Keys & Relationships:** Established foreign key relationships between fact and dimension tables (e.g., `FactSales.Customer_Id` referencing `DimCustomer.Customer_Id`) to maintain referential integrity, enable accurate table joins, and support efficient analytical querying within the relational database.
-- **Building the ERD:** The Entity Relationship Diagram (ERD) was subsequently built and validated within the SQL environment (MySQL Workbench), visually confirming the integrity of the data model and ensuring efficient query paths for downstream BI tools.
+The transition from Python-based transformation to SQL was a critical step in establishing a structured, production-ready analytical database. Using a dedicated SQL deployment script (`Import_DataCo.sql`), I implemented the following workflow:
+
+- **Database Provisioning:** Created the `dataco_supply_chain` database to serve as the centralized repository for the normalized analytical data model.
+
+- **Schema Definition:** Translated the Python-generated data structures into a formal relational schema using `CREATE TABLE` statements. Each dimension and fact table was defined with appropriate data types, including `DECIMAL(15,10)` for financial precision, `DATETIME` for temporal attributes, and `VARCHAR` for categorical fields, ensuring consistent and reliable data storage.
+
+- **Data Ingestion:** Leveraged `LOAD DATA LOCAL INFILE` to efficiently bulk-load the Python-generated CSV files into their corresponding SQL tables, providing an efficient and scalable ingestion mechanism for the large dataset.
+
+- **Primary Key Definition:** Assigned unique `PRIMARY KEY` constraints to dimension and fact tables, including `DimCustomer`, `DimProduct`, `FactSales`, and `FactWebTraffic`, to enforce record uniqueness and provide efficient row-level identification.
+
+- **Foreign Key Relationships:** Established relationships between fact and dimension tables—for example, linking `FactSales.Customer_Id` to `DimCustomer.Customer_Id` — to enforce referential integrity, support reliable joins, and enable efficient cross-dimensional analytical queries.
+
+- **ERD Development & Validation:** Built and validated the Entity Relationship Diagram (ERD) in MySQL Workbench to visually verify table relationships, cardinality, and data-model integrity, establishing efficient query paths for downstream analytics and Power BI reporting.
+
+
 
 ### Phase 3: Power BI Intelligence & Visualization
-The SQL Server database served as the live source for the Power BI dashboard suite:
-- **Data Connectivity:** Power BI was connected directly to the MySQL Workbench Server instance, importing the structured tables into the Power BI semantic model.
-- **Semantic Modeling:** The relationships defined in SQL were replicated and validated within Power BI's data model, ensuring consistent filtering and cross-highlighting behavior across all reports.
-- **DAX Implementation:** Advanced DAX measures were developed for time-intelligence (MoM growth), profitability ratios, and conditional formatting logic, enriching the analytical capabilities of the dashboard.
-- **UI/UX Design:** A 5-page executive dashboard was designed, focusing on Sales, Web Traffic, Operations, and Inventory, providing intuitive navigation and clear communication of insights.
+The SQL database served as the centralized data source for the Power BI dashboard suite, providing a structured foundation for semantic modeling, advanced analytics, and executive reporting.
 
----
+- **Data Connectivity:** Connected Power BI directly to the MySQL database server, importing the curated dimension and fact tables into the Power BI semantic model for downstream analysis and reporting.
 
-## Data Modeling (Fact Constellation Schema)
-The architecture utilizes a Galaxy Schema to support complex analysis across sales, logistics, and web engagement through shared dimensions.
+- **Semantic Modeling:** Recreated and validated the relational relationships established in SQL within Power BI, ensuring consistent filtering, cross-filtering, and cross-highlighting behavior across dashboards and analytical views.
 
-| Table Name | Strategic Role | Business Value |
-| :--- | :--- | :--- |
-| `FactSales` | Sales & Order Transactions | Stores transactional sales data, including revenue, quantity, discounts, and market information, enabling comprehensive sales, profitability, and operational analysis. |
-| `FactWebTraffic` | Web Traffic & Customer Activity | Records website activity and links customer interactions to completed orders, enabling analysis of customer engagement, conversion behaviour, and the relationship between online activity and sales outcomes. |
-| `DimCustomer` | Customer Information | Contains customer demographic and location attributes, enabling customer segmentation, geographic analysis, and purchasing behaviour analysis. |
-| `DimProduct` | Product Information | Stores product details, pricing, and category information, supporting product performance, pricing, and product portfolio analysis. |
-| `DimCategory` | Product Classification | Organises products into business categories, enabling category-level sales and product mix analysis. |
-| `DimDepartment` | Department Classification | Groups products by department to evaluate departmental sales and operational performance. |
-| `DimLocation` | Geographic Information | Stores regional and market information, supporting geographic sales analysis, regional performance monitoring, and market comparisons. |
-| `DimShipping` | Shipping & Delivery Information | Captures shipping methods and delivery performance, enabling analysis of shipping efficiency, delivery delays, and logistics operations. |
-| `DimOrderDetails` | Order Information | Stores order-level attributes such as payment type, order status, and order date, supporting order lifecycle and transaction analysis. |
-| `DimDate` | Time Dimension | Provides a standardized date hierarchy for analysing business performance across days, months, quarters, and years, enabling trend and seasonality analysis. |
+- **DAX & Analytical Measures:** Developed advanced DAX measures for time-intelligence analysis, including Month-over-Month (MoM) growth, profitability metrics, KPI calculations, and conditional formatting logic to enhance analytical depth and business interpretation.
 
-## Entity Relationship Diagram (ERD)
+- **Dashboard & UI/UX Design:** Designed a 5-page executive dashboard suite covering Sales, Web Traffic, Operations, and Inventory performance. The dashboards incorporated intuitive navigation, interactive visualizations, KPI-driven layouts, and clear visual storytelling to communicate actionable insights to business stakeholders.
+
+
+## Entity Relationship Diagram
+The architecture leverages a Galaxy Schema to enable comprehensive analysis across sales, logistics, and web engagement by utilizing shared, conformed dimensions.
 <img width="2209" height="1124" alt="ERD (DataCo)" src="https://github.com/user-attachments/assets/3c356d89-98f9-4c03-a18c-2e7e3caf3a3b" />
 
----
 
-## Business Performance Dashboard Summary
-
-| Dashboard Page | Strategic Focus | Business Value |
+## Data Modeling
+| Table Name | Strategic Role | Business Value |
 | :--- | :--- | :--- |
-| **Overview** | High-level business health monitoring across core financial metrics (Sales, Costs, Profit), volume indicators, category/market distribution, customer segmentation, and monthly sales seasonality. | Provides executive visibility into top-line revenue performance, identifying top sales drivers by category/market, payment preferences, and seasonal demand fluctuations to guide annual budgeting and commercial planning. |
-| **Discounts** | Evaluation of promotional discount depth, discount elasticity, margin erosion per 1% discount, and order discount rates across price segments and categories. | Prevents margin leakage by identifying inelastic or high-erosion product categories, enabling targeted discount capping to preserve overall profitability while maintaining strategic promotional depth. |
-| **Web Traffic** | Digital channel effectiveness, web conversion rates by day of week, category-level conversion performance, and web vs. non-web sales channel breakdown by product. | Pinpoints conversion bottlenecks on digital platforms, optimizes marketing spend across high-performing sales days (e.g., Thursday peak), and guides targeted UX/UI improvements on low-converting product landing pages. |
-| **Shipping** | Fulfillment performance analysis tracking late vs. canceled order trends, variance between scheduled and actual delivery days, and profitability by shipping status and mode. | Minimizes logistics inefficiencies and SLA breach risks by identifying carrier/mode delays (e.g., *Late Delivery* average variance of +1.5 days), optimizing shipping choices to protect customer satisfaction and unit margins. |
-| **Recommendation** | Strategic prioritization via an Impact vs. Effort matrix covering key initiatives: Discount Optimization, SLA Performance & Risk, Checkout/Traffic, and Post-Purchase/Return Reduction. | Translates complex operational data into actionable, prioritized business initiatives—enabling leadership to execute immediate high-ROI quick wins while structuring long-term strategic investments. |
+| `FactSales` | Sales & Order Transactions | Captures transactional sales data, including revenue, quantity, discounts, and market attributes, supporting comprehensive sales, profitability, and operational analysis. |
+| `FactWebTraffic` | Web Traffic & Customer Activity | Captures website activity and customer interactions associated with completed orders, enabling analysis of digital engagement, conversion behavior, and the relationship between web activity and sales outcomes. |
+| `DimCustomer` | Customer Information | Stores customer demographic and geographic attributes, supporting customer segmentation, geographic analysis, and purchasing behavior insights. |
+| `DimProduct` | Product Information | Contains product attributes, pricing, and category details, enabling analysis of product performance, pricing effectiveness, and portfolio composition. |
+| `DimCategory` | Product Classification | Organizes products into business categories, supporting category-level sales, product mix, and performance analysis. |
+| `DimDepartment` | Department Classification | Groups products by department, enabling evaluation of departmental sales performance and operational trends. |
+| `DimLocation` | Geographic Information | Stores regional and market attributes, supporting geographic performance analysis, regional comparisons, and market-level insights. |
+| `DimShipping` | Shipping & Delivery Information | Captures shipping methods and delivery attributes, enabling analysis of fulfillment efficiency, delivery performance, delays, and logistics operations. |
+| `DimOrderDetails` | Order Information | Stores order-level attributes such as payment method, order status, and order date, supporting transaction lifecycle and order behavior analysis. |
+| `DimDate` | Time Dimension | Provides a standardized date hierarchy across days, months, quarters, and years, enabling consistent trend, period-over-period, and seasonality analysis. |
 
----
 
 ## Technical Stack
-* **ETL & Data Engineering:** Python (`pandas`, `numpy`, `sqlalchemy`)
-* **Database & Warehousing:** MySQL Workbench (Schema Design, PK/FK Constraints, Indexing)
-* **Business Intelligence & Analytics:** Microsoft Power BI (DAX, SVG Custom Visuals, Power Query, Data Modeling)
+- **ETL & Data Engineering:** Python (`Pandas`, `NumPy`, `SQLAlchemy`)
+- **Database & Data Warehousing:** MySQL Workbench — Schema Design, Primary/Foreign Key Constraints, Indexing
+- **Business Intelligence & Analytics:** Microsoft Power BI — DAX, Power Query, Data Modeling, SVG Custom Visuals
 
----
 
-## Author & Professional Contact
+## Reference
 
-**Daniel (Viet) Nguyen**  
-*BI Consultant*  
-- **Date:** July 2026
 - **Portfolio / Projects:** [Link to Github Portfolio](https://github.com/Danny-NG-9999/Academic-and-Personal-Projects)
-- **Email:** daniel.h.nguyen24@gmail.com
-
-*If you find this repository helpful or relevant to your enterprise BI architecture, feel free to give it a ⭐️!*
-
----
