@@ -1,4 +1,3 @@
-```sql
 /* ============================================================
    Database Configuration
    ============================================================ */
@@ -1266,4 +1265,3 @@ FROM master_customer_journey_view;
 
 SELECT COUNT(*) AS Final_Stored_Rows
 FROM master_customer_journey_view;
-```
